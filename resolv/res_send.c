@@ -408,7 +408,7 @@ __libc_res_nsend(res_state statp, const u_char *buf, int buflen,
 	 * Maybe initialize our private copy of the ns_addr_list.
 	 */
 	if (EXT(statp).nsinit == 0) {
-		unsigned char map[MAXNS];
+		u_int16_t map[MAXNS];
 
 		memset (map, MAXNS, sizeof (map));
 		for (n = 0; n < MAXNS; n++) {
@@ -447,7 +447,6 @@ __libc_res_nsend(res_state statp, const u_char *buf, int buflen,
 					sizeof (struct sockaddr_in6)
 					- sizeof (struct sockaddr_in));
 				EXT(statp).nssocks[n] = -1;
-				n++;
 			}
 		}
 		EXT(statp).nsinit = 1;
